@@ -1,6 +1,6 @@
 {
   "name": "fiche-hse-cementys",
-  "version": "0.1",
+  "version": "1",
   "description": "Générateur de fiche HSE Cementys'",
   "main": "certificate.js",
   "scripts": {
