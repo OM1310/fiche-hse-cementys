@@ -1,7 +1,7 @@
 {
-  "name": "attestation-couvre-feu",
-  "version": "1.1.5",
-  "description": "Générateur d'attestation de déplacement dérogatoire'",
+  "name": "fiche-hse-cementys",
+  "version": "0.1",
+  "description": "Générateur de fiche HSE Cementys'",
   "main": "certificate.js",
   "scripts": {
     "lint": "eslint src/**/*.js",

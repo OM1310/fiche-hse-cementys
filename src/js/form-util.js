@@ -113,6 +113,7 @@ export function toAscii (string) {
 export function getProfile (formInputs) {
   const fields = {}
   for (const field of formInputs) {
+    //console.log(field, field.value, field.id.substring('field-'.length))
     let value = field.value
     if (field.id === 'field-datesortie') {
       const dateSortie = field.value.split('-')
@@ -210,7 +211,7 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
 }
 
 export function prepareForm () {
-  const formInputs = $$('#form-profile input')
+  const formInputs = $$('#form-profile input, #form-profile select')
   const snackbar = $('#snackbar')
   const reasonInputs = [...$$('input[name="field-reason"]')]
   const reasonFieldset = $('#reason-fieldset')

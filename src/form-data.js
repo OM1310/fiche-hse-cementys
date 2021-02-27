@@ -1,3 +1,4 @@
+export default
 [
   [
     {
@@ -8,14 +9,14 @@
       "autocomplete": "given-name",
       "placeholder": "Ouafae"
     },
-    {
-      "key": "hgfhgf",
-      "type": "text",
-      "contentType": "hgdgh",
-      "label": "hgfdgh",
-      "autocomplete": "given-name",
-      "placeholder": "Ouafae"
-    },
+    // {
+    //   "key": "hgfhgf",
+    //   "type": "text",
+    //   "contentType": "hgdgh",
+    //   "label": "hgfdgh",
+    //   "autocomplete": "given-name",
+    //   "placeholder": "Ouafae"
+    // },
     {
       "key": "lastname",
       "type": "text",
@@ -37,17 +38,38 @@
       ]
     },
     {
-      "key": "lieuDeTravail",
+      "key": "lieuDeTravail1",
       "type": "select",
-      "contentType": "lieuDeTravail",
-      "label": "Lieu de travail",
-      "autocomplete": "lieuDeTravail",
+      "contentType": "lieuDeTravail1",
+      "label": "lieuDeTravail1",
+      "autocomplete": "lieuDeTravail1",
       "items": [
-        {"code":"LDT1","label":"LDT 1"},
-        {"code":"LDT2","label":"LDT 2"},
-        {"code":"LDT3","label":"LDT 3"}
+        {"code":"LDT1_1","label":"LDT 1_1"},
+        {"code":"LDT1_2","label":"LDT 1_2"},
+        {"code":"LDT1_3","label":"LDT 1_3"}
       ]
     },
+    {
+      "key": "lieuDeTravail2",
+      "type": "select",
+      "contentType": "lieuDeTravail2",
+      "label": "Lieu de travail2",
+      "autocomplete": "lieuDeTravail2",
+      "items": [
+        {"code":"LDT2_1","label":"LDT 2_1"},
+        {"code":"LDT2_2","label":"LDT 2_2"},
+        {"code":"LDT2_3","label":"LDT 2_3"}
+      ]
+    },
+    {
+      "key": "lieuDeTravail3",
+      "type": "text",
+     "contentType": "LDT3",
+      "label": "LieuDeTravail",
+      "autocomplete": "family-name",
+      "placeholder": "PDT"
+    },
+       
     {
       "key": "birthday",
       "type": "text",
@@ -147,19 +169,13 @@
         }
       ]
     },
-    {
-      "key": "reason2",
-      "type": "list",
-      "items": [
-        {
-          "code": "travail",
-          "label": "éééééDéplacements entre le domicile et le lieu d'exercice de l'activité professionnelle ou le lieu d'enseignement et de formation, déplacements professionnels ne pouvant être différés ;"
-        },
-        {
-          "code": "sante",
-          "label": "Dééééééplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance et ne pouvant être différés ou pour l’achat de produits de santé ;"
-        }
-      ]
-    }
+   {
+      "key": "risque1",
+      "type": "checkbox",
+      "contentType": "risque1",
+      "label": "risque1",
+      "autocomplete": "family-name",
+      "placeholder": "risque1"
+    },
   ]
 ]

@@ -2,16 +2,27 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import '../css/main.css'
 
-import formData from '../form-data.json'
+import formData from '../form-data.js'
 
 import { $, appendTo, createElement } from './dom-utils'
 
 const createTitle = () => {
-  const h2 = createElement('h2', { className: 'titre-2', innerHTML: 'Remplissez en ligne votre déclaration numérique : ' })
+  const h2 = createElement('h2', { className: 'titre-2', innerHTML: 'Remplissez en ligne votre fiche HSE : ' })
   const p = createElement('p', { className: 'msg-info', innerHTML: 'Tous les champs sont obligatoires.' })
   return [h2, p]
 }
 // createElement('div', { className: 'form-group' })
+
+const onPosteChanged = () => {
+  alert('La valeur choisie est:'+document.getElementById("field-posteDeTravail").value)
+
+  if (document.getElementById("field-posteDeTravail").value === 'poste1')
+  {
+    document.getElementById("field-lieuDeTravail2").parentElement.parentElement.style.display = 'none'
+    document.getElementById("field-lieuDeTravail3").parentElement.parentElement.style.display = 'none'
+  }
+
+}
 
 const createFormGroup = ({
   autocomplete = false,
@@ -26,6 +37,7 @@ const createFormGroup = ({
   pattern,
   placeholder = '',
   type = 'text',
+  items,
 }) => {
   const formGroup = createElement('div', { className: 'form-group' })
   const labelAttrs = {
@@ -36,24 +48,55 @@ const createFormGroup = ({
   const labelEl = createElement('label', labelAttrs)
 
   const inputGroup = createElement('div', { className: 'input-group align-items-center' })
-  const inputAttrs = {
-    autocomplete,
-    autofocus,
-    className: 'form-control',
-    id: `field-${name}`,
-    inputmode,
-    min,
-    max,
-    minlength,
-    maxlength,
-    name,
-    pattern,
-    placeholder,
-    required: true,
-    type,
+
+  let input;
+  if(type !== "select") {
+    const inputAttrs = {
+      autocomplete,
+      autofocus,
+      className: 'form-control',
+      id: `field-${name}`,
+      inputmode,
+      min,
+      max,
+      minlength,
+      maxlength,
+      name,
+      pattern,
+      placeholder,
+      required: true,
+      type,
+    }
+    input = createElement('input', inputAttrs)
+  }
+  else {
+
+    const inputAttrs = {
+      autofocus,
+      className: 'form-control',
+      id: `field-${name}`,
+      name,
+      required: true,
+    
+    }
+
+    if (name === 'posteDeTravail')
+
+      inputAttrs.onchange = onPosteChanged
+
+    input = createElement('select', inputAttrs)
+
+    items.forEach(option=> {
+      const optionEl = createElement('option', {value:option.code});
+      var textnode = document.createTextNode(option.label);
+      optionEl.appendChild(textnode);                
+      input.appendChild(optionEl);
+    })
+
+    
+
   }
 
-  const input = createElement('input', inputAttrs)
 
   const validityAttrs = {
     className: 'validity',
@@ -68,7 +111,7 @@ const createFormGroup = ({
   appendToFormGroup(example)
 
   const appendToInputGroup = appendTo(inputGroup)
-  appendToInputGroup(input)
+  inputGroup.appendChild(input)
   appendToInputGroup(validity)
 
   return formGroup

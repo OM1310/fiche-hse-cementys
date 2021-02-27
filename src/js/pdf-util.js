@@ -2,7 +2,7 @@ import { generateQR } from './util'
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 
 const ys = {
-  travail: 540,
+  travail: "QSD QSD",
   sante: 507,
   famille: 461,
   handicap: 429,
@@ -13,7 +13,7 @@ const ys = {
 }
 
 export async function generatePdf (profile, reasons, pdfBase) {
-  const creationInstant = new Date()
+  const creationInstant = new Date();
   const creationDate = creationInstant.toLocaleDateString('fr-FR')
   const creationHour = creationInstant
     .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
@@ -24,6 +24,8 @@ export async function generatePdf (profile, reasons, pdfBase) {
     firstname,
     birthday,
     placeofbirth,
+    posteDeTravail,
+    lieuDeTravail1,
     address,
     zipcode,
     city,
@@ -70,14 +72,16 @@ export async function generatePdf (profile, reasons, pdfBase) {
   }
 
   drawText(`${firstname} ${lastname}`, 119, 665)
-  drawText(birthday, 119, 645)
-  drawText(placeofbirth, 312, 645)
-  drawText(`${address} ${zipcode} ${city}`, 133, 625)
+  // drawText(birthday, 119, 645)
+  // drawText(placeofbirth, 312, 645)
+  drawText(posteDeTravail, 330, 645)
+  drawText(lieuDeTravail1, 330, 600)
+  // drawText(`${address} ${zipcode} ${city}`, 133, 625)
 
   reasons
     .split(', ')
-    .forEach(reason => {
-      drawText('x', 73, ys[reason], 12)
+    .forEach((reason,index) => {
+      drawText(ys[reason], 73, 585+index*-20, 12)
     })
 
   let locationSize = getIdealFontSize(font, profile.city, 83, 7, 11)
@@ -103,6 +107,24 @@ export async function generatePdf (profile, reasons, pdfBase) {
   // drawText('Date de création:', 479, 130, 6)
   // drawText(`${creationDate} à ${creationHour}`, 470, 124, 6)
 
+
+
+
+
+  // Fetch PNG image
+  const pngUrl = 'https://pdf-lib.js.org/assets/minions_banana_alpha.png'
+  const pngImageBytes = await fetch(pngUrl).then((res) => res.arrayBuffer())
+
+  // Embed the JPG image bytes and PNG image bytes
+  // const jpgImage = await pdfDoc.embedJpg(jpgImageBytes)
+  const pngImage = await pdfDoc.embedPng(pngImageBytes)
+
+
+
+
+
+
+
   const qrTitle1 = 'QR-code contenant les informations '
   const qrTitle2 = 'de votre attestation numérique'
 
@@ -112,7 +134,7 @@ export async function generatePdf (profile, reasons, pdfBase) {
 
   page1.drawText(qrTitle1 + '\n' + qrTitle2, { x: 440, y: 230, size: 6, font, lineHeight: 10, color: rgb(1, 1, 1) })
 
-  page1.drawImage(qrImage, {
+  page1.drawImage(pngImage, {
     x: page1.getWidth() - 156,
     y: 125,
     width: 92,
