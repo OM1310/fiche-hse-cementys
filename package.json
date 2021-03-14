@@ -17,7 +17,7 @@
     "prebuild:ci": "run-p lint clean:dist",
     "build:ci": "cross-env npm run build:simple",
     "postbuild:ci": "cross-env-shell react-snap",
-    "build:prod": "cross-env PUBLIC_URL='/attestation-couvre-feu-covid-19' npm run build:simple",
+    "build:prod": "cross-env PUBLIC_URL='/fiche-hse-cementys' npm run build:simple",
     "build:test": "cross-env PUBLIC_URL='/euqiremun' npm run build:simple",
     "build:dev": "cross-env PUBLIC_URL='/' npm run build:simple",
     "preserve": "npm run build",

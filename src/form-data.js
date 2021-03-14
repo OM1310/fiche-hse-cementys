@@ -70,16 +70,7 @@ export default
       "placeholder": "PDT"
     },
        
-    {
-      "key": "birthday",
-      "type": "text",
-      "contentType": "birthday",
-      "label": "Poste de travail",
-      "autocomplete": "birthday",
-      "pattern": "^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)",
-      "maxlength": 10,
-      "placeholder": "Chef de projet"
-    }
+    
   ],
   [
     {
